@@ -1,0 +1,3 @@
+[submodule "rtems_rasta"]
+	path = rtems_rasta
+	url = https://github.com/hariprasa/rtems_rasta.git
