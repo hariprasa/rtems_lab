@@ -112,7 +112,8 @@ rtems_task Init( rtems_task_argument ignored ){
 
   status = rtems_clock_set( &time );  
   printf ("main-- starting\n"); 
-  rtems_clock_get(RTEMS_CLOCK_GET_TICKS_PER_SECOND, &ticks_per_second); 
+  ticks_per_second = rtems_clock_get_ticks_per_second(); //for rtems 4.12
+//  rtems_clock_get(RTEMS_CLOCK_GET_TICKS_PER_SECOND, &ticks_per_second); 
   printf("main-- ticks_per_second : %d\n", (int)ticks_per_second); 
   status = rtems_task_set_priority(RTEMS_SELF, 50 , &the_priority); 
   /* Check current priority  */ 
@@ -138,8 +139,8 @@ rtems_task Init( rtems_task_argument ignored ){
   if(status != RTEMS_SUCCESSFUL)
     printf("main-- rtems_task_mode failed\n"); 
 
-  
-  status = rtems_clock_get(RTEMS_CLOCK_GET_TOD, &time); 
+  status = rtems_clock_get_tod(&time); // for rtems 4.12 
+  //status = rtems_clock_get(RTEMS_CLOCK_GET_TOD, &time); 
   printf("main-- start time(s) : %d\n", (int)time.second);
 
   /* Set current task priority lower than RMS tasks priorities,
